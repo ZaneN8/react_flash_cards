@@ -1,7 +1,27 @@
 import React from "react";
-import { Button } from "semantic-ui-react";
+import { Button, Reveal } from "semantic-ui-react";
+import "./App.css";
 
 const FlashCard = ({ question, answer, xx, id }) => {
+  return (
+    <Reveal animated="move" class="blurred">
+      <Reveal.Content>
+        <div>{question}</div>
+      </Reveal.Content>
+      <br />
+      <Reveal.Content visible>
+        <div style={{ backgroundColor: "black" }}>{answer}</div>
+      </Reveal.Content>
+      <Reveal.Content hidden>
+        <div>{answer}</div>
+      </Reveal.Content>
+      <br />
+      <Button onClick={() => xx(id)} color="red">
+        Delete
+      </Button>
+    </Reveal>
+  );
+
   return (
     <div>
       <div>{question}</div>
@@ -11,11 +31,6 @@ const FlashCard = ({ question, answer, xx, id }) => {
       </Button>
     </div>
   );
-  // return (
-  //   <Reveal animated="move">
-  //     <Reveal.Content visible>{question}</Reveal.Content>
-  //     <Reveal.Content hidden>{answer}</Reveal.Content>
-  //   </Reveal>
-  // );
 };
+
 export default FlashCard;
