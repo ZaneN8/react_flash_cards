@@ -1,15 +1,14 @@
 import React from "react";
 import FlashCard from "./FlashCard";
-import { Table } from "semantic-ui-react";
 
-const FlashCards = ({ flashCardListProp }) => {
-  return (
-    <div>
-      {flashCardListProp.map((list) => {
-        return <FlashCard key={list.id} {...list} />;
-      })}
-    </div>
-  );
+const FlashCards = ({ flashCardListProp, deleteFlashCardProp }) => {
+  const renderFlashCards = () => {
+    return flashCardListProp.map((list) => {
+      return <FlashCard key={list.id} {...list} xx={deleteFlashCardProp} />;
+    });
+  };
+
+  return <div>{renderFlashCards()}</div>;
 };
 
 export default FlashCards;

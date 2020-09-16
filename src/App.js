@@ -13,11 +13,37 @@ class App extends Component {
     ],
   };
 
+  handleClick = () => {};
+
+  addFlashCard = (flashCard) => {
+    const newFlashCard = { ...flashCard, id: Math.random() };
+    this.setState({
+      flashCardList: [newFlashCard, ...this.state.flashCardList],
+    });
+  };
+
+  deleteFlashCard = (id) => {
+    const { flashCardList } = this.state;
+    const filteredFlashCards = flashCardList.filter(
+      (flashCard) => flashCard.id !== id
+    );
+    this.setState({
+      flashCardList: filteredFlashCards,
+    });
+  };
+
   render() {
     return (
       <Container>
-        <Header>Flash Cards</Header>
-        <FlashCards flashCardListProp={this.state.flashCardList} />
+        <Header as="h1">Flash Cards</Header>
+        <hr />
+
+        <FlashCardForm addFlashCardProp={this.addFlashCard} />
+
+        <FlashCards
+          flashCardListProp={this.state.flashCardList}
+          deleteFlashCardProp={this.deleteFlashCard}
+        />
       </Container>
     );
   }
